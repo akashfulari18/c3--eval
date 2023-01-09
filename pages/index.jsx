@@ -20,8 +20,9 @@ export default function Home({profileData,projectsData}) {
                 <h6>{profileData.login}</h6>
                 <h3>{profileData.bio}</h3>
                 <div style={{display:"flex",justifyContent:"center",gap:"1rem",}}>
-                  <button>resume</button>
-                  <button>follow</button>
+                  <Link href={``}><button>resume</button></Link>
+                  <Link href={`${profileData.html_url}` } target={"_blank"}><button>Follow</button></Link>
+                  {/* <button>follow</button> */}
                 </div>
                 
             
