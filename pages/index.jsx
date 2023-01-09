@@ -20,7 +20,8 @@ export default function Home({profileData,projectsData}) {
                 <h6>{profileData.login}</h6>
                 <h3>{profileData.bio}</h3>
                 <div style={{display:"flex",justifyContent:"center",gap:"1rem",}}>
-                  <Link href={``}><button>resume</button></Link>
+                  <Link href={`https://drive.google.com/file/d/1xaMuGhFWKyH24monpvWCGU3Kc16e2Kai/view`}
+                  target={"_blank"}><button>resume</button></Link>
                   <Link href={`${profileData.html_url}` } target={"_blank"}><button>Follow</button></Link>
                   {/* <button>follow</button> */}
                 </div>
