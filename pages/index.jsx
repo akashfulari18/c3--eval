@@ -2,15 +2,16 @@ import Image from 'next/image'
 import { Inter } from '@next/font/google'
 import Projects from './projects'
 import Experience from './experience'
+import Link from 'next/link'
 
 const inter = Inter({ subsets: ['latin'] })
 
 const tech=["node" , "js" ,"html" , "CSS" , "Redux" ,"Next.js" , "MongoDB"]
-export default function Home({profileData,projectData}) {
+export default function Home({profileData,projectsData}) {
   // console.log(profileData)
   return (
     <>
-      <h2>home</h2>
+      
       <div style={{display:"flex", gap:"1rem"}}>
         <div style={{width:"30%" }}>
             <div style={{boxShadow: "rgba(6, 24, 44, 0.4) 0px 0px 0px 2px, rgba(6, 24, 44, 0.65) 0px 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px inset",textAlign:"center",marginBottom:"1rem",padding:"1rem"}}>
@@ -44,7 +45,50 @@ export default function Home({profileData,projectData}) {
         
         </div>
         <div style={{width:"70%"}}>
-        <Projects projectsData={projectData}/>
+        <div>
+      
+      <div
+        style={{
+          display: "flex",
+          flexWrap: "wrap",
+          gap: "1rem",
+          margin:"auto",
+          width:"100%",
+          justifyContent:"center",
+          alignItems:"center"
+
+        }}
+      >
+        {projectsData && projectsData?.items?.map((project) => (
+          <Link href={`${project.html_url}`} key={project.id} target="_blank" style={{textDecoration:"none"}}>
+            <div
+              key={project.id}
+              style={{
+                boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px",
+                padding:"1rem",
+                width: "400px",
+                margin: "auto",
+              }}
+            >
+              <div>
+                <h2>{project.name}</h2>
+                 <h4>{project.full_name}</h4>
+              </div>
+              <div style={{display:"flex",justifyContent:"space-between"}}>
+                <div style={{display:"flex", gap:"1rem"}}>
+                    <h3>star:{project.stargazers_count}</h3>
+                    <h3>star:{project.forks_count}</h3>
+                </div>
+                <div>
+                    <h3>{project.language}</h3>
+                </div>
+
+              </div>
+            </div>
+          </Link>
+        ))}
+      </div>
+    </div>
         </div>
       </div>
     </>
@@ -63,7 +107,7 @@ export async function getStaticProps(){
   return{
     props:{
       profileData : data,
-      projectData: data1
+      projectsData: data1
     }
   }
 }
